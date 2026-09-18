@@ -32,10 +32,23 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+!.env.example
+
+# sqlite (legacy local dev artifact, no longer used — see Postgres setup in README)
+*.db
+*.db-journal
 
 # vercel
 .vercel
 
+# auto-generated agent-skill reference docs (local tooling aid, not app code)
+/.agents/
+/.windsurf/
+/.claude/skills/
+skills-lock.json
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+/src/generated/prisma

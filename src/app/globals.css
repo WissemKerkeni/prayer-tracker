@@ -1,26 +1,158 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* ---------------------------------------------------------------------- */
+/* Serene Nūr design tokens — deep sanctuary emerald, desert gold accents */
+/* ---------------------------------------------------------------------- */
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+:root {
+  --canvas: #f8fafc;
+  --surface: #ffffff;
+  --surface-raised: #ffffff;
+  --border: #e2e8f0;
+  --foreground: #0f172a;
+  --foreground-muted: #475569;
+
+  --primary: #0f382c;
+  --primary-strong: #0a2a20;
+  --on-primary: #ffffff;
+  /* Accent: for text/icons/borders that sit directly on canvas or surface
+     (not inside a filled primary element). Same as primary in light mode;
+     brighter than the (muted) dark-mode primary fill so it stays legible. */
+  --accent: #0f382c;
+
+  --success: #10b981;
+  --success-container: #ecfdf5;
+  --on-success-container: #059669;
+
+  --warning: #d97706;
+  --warning-container: #fef3c7;
+  --on-warning-container: #b45309;
+
+  --danger: #e11d48;
+  --danger-container: #ffe4e6;
+  --on-danger-container: #be123c;
+
+  --bonus: #0f766e;
+  --bonus-container: #f0fdfa;
+  --on-bonus-container: #0f766e;
+
+  --radius-card: 1rem;
+  --radius-control: 0.75rem;
+  --radius-pill: 9999px;
+
+  --shadow-card: 0 4px 20px -2px rgba(15, 56, 44, 0.08);
+  --shadow-elevated: 0 10px 25px -4px rgba(15, 56, 44, 0.25);
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  :root:not(.light) {
+    --canvas: #0a1712;
+    --surface: #0f231b;
+    --surface-raised: #14251f;
+    --border: #1e3a2e;
+    --foreground: #eaf6f0;
+    --foreground-muted: #9fb9ac;
+
+    --primary: #1f5c46;
+    --primary-strong: #256e54;
+    --on-primary: #eaf6f0;
+    --accent: #34d399;
+
+    --success: #34d399;
+    --success-container: #123024;
+    --on-success-container: #6ee7b7;
+
+    --warning: #f5a524;
+    --warning-container: #2e2409;
+    --on-warning-container: #fcd34d;
+
+    --danger: #fb7185;
+    --danger-container: #2c1116;
+    --on-danger-container: #fda4af;
+
+    --bonus: #2dd4bf;
+    --bonus-container: #0f2a26;
+    --on-bonus-container: #5eead4;
+
+    --shadow-card: 0 4px 20px -2px rgba(0, 0, 0, 0.4);
+    --shadow-elevated: 0 10px 25px -4px rgba(0, 0, 0, 0.55);
   }
 }
 
+:root.dark {
+  --canvas: #0a1712;
+  --surface: #0f231b;
+  --surface-raised: #14251f;
+  --border: #1e3a2e;
+  --foreground: #eaf6f0;
+  --foreground-muted: #9fb9ac;
+
+  --primary: #1f5c46;
+  --primary-strong: #256e54;
+  --on-primary: #eaf6f0;
+  --accent: #34d399;
+
+  --success: #34d399;
+  --success-container: #123024;
+  --on-success-container: #6ee7b7;
+
+  --warning: #f5a524;
+  --warning-container: #2e2409;
+  --on-warning-container: #fcd34d;
+
+  --danger: #fb7185;
+  --danger-container: #2c1116;
+  --on-danger-container: #fda4af;
+
+  --bonus: #2dd4bf;
+  --bonus-container: #0f2a26;
+  --on-bonus-container: #5eead4;
+
+  --shadow-card: 0 4px 20px -2px rgba(0, 0, 0, 0.4);
+  --shadow-elevated: 0 10px 25px -4px rgba(0, 0, 0, 0.55);
+}
+
+@theme inline {
+  --font-sans: var(--font-plus-jakarta-sans);
+
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-border: var(--border);
+  --color-foreground: var(--foreground);
+  --color-foreground-muted: var(--foreground-muted);
+
+  --color-primary: var(--primary);
+  --color-primary-strong: var(--primary-strong);
+  --color-on-primary: var(--on-primary);
+  --color-accent: var(--accent);
+
+  --color-success: var(--success);
+  --color-success-container: var(--success-container);
+  --color-on-success-container: var(--on-success-container);
+
+  --color-warning: var(--warning);
+  --color-warning-container: var(--warning-container);
+  --color-on-warning-container: var(--on-warning-container);
+
+  --color-danger: var(--danger);
+  --color-danger-container: var(--danger-container);
+  --color-on-danger-container: var(--on-danger-container);
+
+  --color-bonus: var(--bonus);
+  --color-bonus-container: var(--bonus-container);
+  --color-on-bonus-container: var(--on-bonus-container);
+
+  --radius-card: var(--radius-card);
+  --radius-control: var(--radius-control);
+  --radius-pill: var(--radius-pill);
+}
+
 body {
-  background: var(--background);
+  background: var(--canvas);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+* {
+  border-color: var(--border);
 }

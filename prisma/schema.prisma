@@ -1,0 +1,55 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id                String      @id @default(cuid())
+  name              String
+  email             String      @unique
+  passwordHash      String
+  calculationMethod String      @default("MWL")
+  madhab            String      @default("SHAFI")
+  city              String?
+  country           String?
+  theme             String      @default("system")
+  createdAt         DateTime    @default(now())
+  updatedAt         DateTime    @updatedAt
+  prayerLogs        PrayerLog[]
+}
+
+enum Prayer {
+  FAJR
+  DHUHR
+  ASR
+  MAGHRIB
+  ISHA
+}
+
+enum PrayerStatus {
+  ON_TIME
+  LATE
+  NOT_PERFORMED
+}
+
+model PrayerLog {
+  id        String       @id @default(cuid())
+  userId    String
+  user      User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  date      String
+  prayer    Prayer
+  status    PrayerStatus
+  points    Int
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+
+  @@unique([userId, date, prayer])
+  @@index([userId, date])
+}
